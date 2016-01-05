@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: f8540bea7b77f4952adc2b7974912096
+timeCreated: 1451941942
+licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: env_PlatformUfo
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -17,14 +20,14 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
@@ -36,7 +39,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -44,21 +47,84 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 40
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
     - name: env_PlatformUfo
       rect:
         serializedVersion: 2
-        x: 320
-        y: 304
-        width: 1281
-        height: 215
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 949, y: 536}
+        - {x: 940, y: 532}
+        - {x: 935, y: 524}
+        - {x: 934, y: 500}
+        - {x: 934, y: -518}
+        - {x: 936, y: -532}
+        - {x: 951, y: -538}
+        - {x: 960, y: -538}
+        - {x: 960, y: 536}
+      - - {x: 163, y: -238}
+        - {x: 194, y: -237}
+        - {x: 297, y: -230}
+        - {x: 345, y: -228}
+        - {x: 400, y: -224}
+        - {x: 539, y: -208}
+        - {x: 599, y: -198}
+        - {x: 630, y: -189}
+        - {x: 643, y: -175}
+        - {x: 643, y: -134}
+        - {x: 638, y: -125}
+        - {x: 629, y: -120}
+        - {x: 603, y: -115}
+        - {x: 469, y: -115}
+        - {x: 469, y: -113}
+        - {x: 434, y: -107}
+        - {x: 408, y: -94}
+        - {x: 352, y: -70}
+        - {x: 334, y: -63}
+        - {x: 304, y: -49}
+        - {x: 251, y: -27}
+        - {x: 231, y: -20}
+        - {x: 197, y: -19}
+        - {x: -219, y: -19}
+        - {x: -251, y: -25}
+        - {x: -274, y: -37}
+        - {x: -313, y: -53}
+        - {x: -341, y: -67}
+        - {x: -376, y: -81}
+        - {x: -438, y: -109}
+        - {x: -461, y: -115}
+        - {x: -587, y: -115}
+        - {x: -626, y: -119}
+        - {x: -639, y: -126}
+        - {x: -642, y: -135}
+        - {x: -642, y: -172}
+        - {x: -632, y: -186}
+        - {x: -621, y: -192}
+        - {x: -597, y: -200}
+        - {x: -551, y: -208}
+        - {x: -524, y: -212}
+        - {x: -472, y: -217}
+        - {x: -416, y: -223}
+        - {x: -387, y: -224}
+        - {x: -363, y: -226}
+        - {x: -290, y: -231}
+        - {x: -267, y: -232}
+        - {x: -260, y: -232}
+        - {x: -239, y: -234}
+        - {x: -212, y: -235}
+        - {x: -180, y: -238}
+        - {x: 13, y: -238}
+        - {x: 53, y: -237}
+        - {x: 55, y: -238}
     outline: []
   spritePackingTag: 
   userData: 
