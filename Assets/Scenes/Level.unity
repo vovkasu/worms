@@ -644,11 +644,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.42825317
+      value: -4.428253
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.151842594
+      value: -0.1518426
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalPosition.z
@@ -669,6 +669,10 @@ Prefab:
     - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
@@ -811,7 +815,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1739476780}
-  - 50: {fileID: 1739476779}
   - 114: {fileID: 1739476778}
   m_Layer: 0
   m_Name: MouseManupulator
@@ -831,24 +834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994eea6f6e1738242a9909ec543caeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyColliders: 0
---- !u!50 &1739476779
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1739476777}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!4 &1739476780
 Transform:
   m_ObjectHideFlags: 0
@@ -895,6 +880,18 @@ Prefab:
     - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
@@ -1048,15 +1045,6 @@ Prefab:
       propertyPath: m_Name
       value: foregrounds
       objectReference: {fileID: 0}
-    - target: {fileID: 21200020, guid: 708042f972a104a1793983dbefca755f, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 21200020, guid: 708042f972a104a1793983dbefca755f, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f8540bea7b77f4952adc2b7974912096,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 708042f972a104a1793983dbefca755f, type: 2}
   m_IsPrefabParent: 0
@@ -1090,3 +1078,66 @@ Transform:
   - {fileID: 881603615}
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!1 &2118830764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2118830766}
+  - 114: {fileID: 2118830765}
+  - 50: {fileID: 2118830767}
+  m_Layer: 0
+  m_Name: BoomManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2118830765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2118830764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca81c2a126baab4aa8ed722de7ceb7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoomTemplates:
+  - Id: 0
+    AlphaMask: {fileID: 2800000, guid: 551e0f49bd09c4f489dff3636e8b1105, type: 3}
+    ColliderDiameterPixels: 50
+    ShockWaveDiameterPixels: 60
+  DestroyColliders: 0
+--- !u!4 &2118830766
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2118830764}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+--- !u!50 &2118830767
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2118830764}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

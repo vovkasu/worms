@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts;
 
 public class DestoyableSprite : MonoBehaviour {
     private SpriteRenderer _spriteRenderer;
@@ -67,11 +68,7 @@ public class DestoyableSprite : MonoBehaviour {
     void OnTriggerStay2D(Collider2D other)
     {
         Debug.Log("OnTriggerStay2D "+other.name, other.gameObject);
-        var mouseClickPosition = other.GetComponent<MouseClickPosition>();
-        if (mouseClickPosition != null)
-        {
-            mouseClickPosition.DestroyColliders = true;
-        }
+        BoomManager.Instance.DestroyColliders = true;
 
         var circleCollider2D = other as CircleCollider2D;
         if (circleCollider2D == null)
