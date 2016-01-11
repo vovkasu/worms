@@ -8,6 +8,7 @@ public class DestoyableSprite : MonoBehaviour {
     public Shader ShaderMask;
     public Texture2D AlphaMaskTexture;
     private Texture2D _coloredTexture;
+    private Camera _mainCamera;
 
     // Use this for initialization
 
@@ -70,7 +71,10 @@ public class DestoyableSprite : MonoBehaviour {
         Debug.Log("OnTriggerStay2D "+other.name, other.gameObject);
         BoomManager.Instance.DestroyColliders = true;
 
+
         var circleCollider2D = other as CircleCollider2D;
+        var boomTemplate = BoomManager.Instance.GeTemplate(circleCollider2D);
+
         if (circleCollider2D == null)
         {
             Debug.LogError("Where circle collider?",gameObject);
@@ -100,13 +104,23 @@ public class DestoyableSprite : MonoBehaviour {
 
 
         var spriteTapPosition = (circleColliderCenter - spriteRendererLeftBottom)* spriteScale;
+        var halfSize = Vector2.one*boomTemplate.ColliderDiameterPixels*0.5f;
+        var leftBottomBoom = spriteTapPosition - halfSize;
+        var rightTopBoom = spriteTapPosition + halfSize;
 
-        for (var x = (int) spriteTapPosition.x; x <= 100 + spriteTapPosition.x; x++)
+        var leftBottomResultRectungle = new Vector2(Mathf.Max(leftBottomBoom.x,0), Mathf.Max(leftBottomBoom.y, 0));
+        var rightTopResultRectungle = new Vector2(Mathf.Min(rightTopBoom.x, AlphaMaskTexture.width), Mathf.Min(rightTopBoom.y, AlphaMaskTexture.height));
+
+        var boomTexture = boomTemplate.AlphaMask;
+
+        for (var x = (int)leftBottomResultRectungle.x; x < rightTopResultRectungle.x; x++)
         {
-            for (var y = (int) spriteTapPosition.y; y <= 100 + spriteTapPosition.y; y++)
+            for (var y = (int)leftBottomResultRectungle.y; y < rightTopResultRectungle.y; y++)
             {
-                var pixel32 = AlphaMaskTexture.GetPixel(x, y);
-                AlphaMaskTexture.SetPixel(x, y, Color.clear);
+                var boomPixel = boomTexture.GetPixel((int) (x-leftBottomBoom.x), (int) (y-leftBottomBoom.y));
+                var maskPixel = AlphaMaskTexture.GetPixel(x,y);
+                var a = Mathf.Min(1 - boomPixel.a, maskPixel.a);
+                AlphaMaskTexture.SetPixel(x, y, new Color(1,1,1,a));
             }
         }
         AlphaMaskTexture.Apply();

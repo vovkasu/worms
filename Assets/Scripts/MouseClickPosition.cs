@@ -3,6 +3,7 @@ using Assets.Scripts;
 
 public class MouseClickPosition : MonoBehaviour {
     private Camera _mainCamera;
+    public int BoomId = 0;
 
     // Use this for initialization
 	void Start ()
@@ -17,7 +18,7 @@ public class MouseClickPosition : MonoBehaviour {
 	    {
 	        Debug.Log(Input.mousePosition.ToString(),this);
 	        var mouseWordPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-	        BoomManager.Instance.AddBoom(mouseWordPosition);
+	        BoomManager.Instance.AddBoom(mouseWordPosition,BoomId);
 	    }
 	}
 }

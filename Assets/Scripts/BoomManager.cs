@@ -8,12 +8,17 @@ namespace Assets.Scripts
         public List<BoomTemplate> BoomTemplates = new List<BoomTemplate>();
 
         public static BoomManager Instance;
-        private readonly List<CircleCollider2D> _colliders = new List<CircleCollider2D>();
+        private readonly Dictionary<CircleCollider2D, int> _collidersIdMap = new Dictionary<CircleCollider2D, int>();
         public bool DestroyColliders = false;
+        private Camera _mainCamera;
+        public float _pixelPerUnit;
 
         private void Awake()
         {
             Instance = this;
+            _mainCamera = Camera.main;
+            _pixelPerUnit = Screen.width / _mainCamera.orthographicSize;
+
         }
 
         void Update()
@@ -23,22 +28,30 @@ namespace Assets.Scripts
             {
                 DestroyColliders = false;
                 Debug.Log("Destroy collider");
-                for (var i = 0; i < _colliders.Count; i++)
+
+                foreach (var circleCollider2D in _collidersIdMap.Keys)
                 {
-                    var circleCollider2D = _colliders[i];
                     Destroy(circleCollider2D);
                 }
+                _collidersIdMap.Clear();
+
             }
         }
 
-        public void AddBoom(Vector3 mouseWordPosition)
+        public void AddBoom(Vector3 mouseWordPosition, int boomId)
         {
+            var boomTemplate = BoomTemplates[boomId];
             var circleCollider2D = gameObject.AddComponent<CircleCollider2D>();
             circleCollider2D.offset = mouseWordPosition;
-            circleCollider2D.radius = 1;
+            circleCollider2D.radius = boomTemplate.ColliderDiameterPixels*0.5f/_pixelPerUnit;
             circleCollider2D.isTrigger = true;
-            _colliders.Add(circleCollider2D);
+            _collidersIdMap.Add(circleCollider2D, boomId);
             Debug.Log("Added collider");
+        }
+
+        public BoomTemplate GeTemplate(CircleCollider2D circleCollider2D)
+        {
+            return BoomTemplates[_collidersIdMap[circleCollider2D]];
         }
     }
 }
