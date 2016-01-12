@@ -12,8 +12,9 @@ public class PlayerControl : MonoBehaviour
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.
 	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
 	public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
-	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
-	public AudioClip[] taunts;				// Array of clips for when the player taunts.
+	public float jumpForce = 1000f;         // Amount of force added when the player jumps.
+    public float flipBackJumpForce = 1000f;         // Amount of force added when the player flip back jumps.
+    public AudioClip[] taunts;				// Array of clips for when the player taunts.
 	public float tauntProbability = 50f;	// Chance of a taunt happening.
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
 
@@ -22,9 +23,10 @@ public class PlayerControl : MonoBehaviour
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
+    private bool _flipBackJump=false;
 
 
-	void Awake()
+    void Awake()
 	{
 		// Setting up references.
 		groundCheck = transform.Find("groundCheck");
@@ -40,6 +42,9 @@ public class PlayerControl : MonoBehaviour
 		// If the jump button is pressed and the player is grounded then the player should jump.
 		if(Input.GetButtonDown("Jump") && grounded)
 			jump = true;
+
+	    if (Input.GetButtonDown("Flip Back") && grounded)
+	        _flipBackJump = true;
 	}
 
 
@@ -81,15 +86,30 @@ public class PlayerControl : MonoBehaviour
 			AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
 
 			// Add a vertical force to the player.
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(facingRight?jumpForce:-jumpForce, jumpForce));
 
-			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
-			jump = false;
-		}
-	}
-	
-	
-	void Flip ()
+            // Make sure the player can't jump again until the jump conditions from Update are satisfied.
+            jump = false;
+            _flipBackJump = false;
+        }
+        else if (_flipBackJump)
+	    {
+            anim.SetTrigger("Jump");
+
+            // Play a random jump audio clip.
+            int i = Random.Range(0, jumpClips.Length);
+            AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
+
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, flipBackJumpForce));
+
+            jump = false;
+            _flipBackJump = false;
+        }
+
+    }
+
+
+    void Flip ()
 	{
 		// Switch the way the player is labelled as facing.
 		facingRight = !facingRight;
