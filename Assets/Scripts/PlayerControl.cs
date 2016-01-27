@@ -185,4 +185,9 @@ public class PlayerControl : MonoBehaviour
     {
         touchAxisHorizontal = null;
     }
+
+    public void Jump()
+    {
+        jump = true;
+    }
 }
