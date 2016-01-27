@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
     private bool _flipBackJump=false;
-
+    private float? touchAxisHorizontal;
 
     void Awake()
 	{
@@ -51,7 +51,15 @@ public class PlayerControl : MonoBehaviour
 	void FixedUpdate ()
 	{
 		// Cache the horizontal input.
-		float h = Input.GetAxis("Horizontal");
+		float h;
+	    if (touchAxisHorizontal != null)
+	    {
+	        h = touchAxisHorizontal.Value;
+	    }
+	    else
+	    {
+	        h= Input.GetAxis("Horizontal");
+	    }
 
 		// The Speed animator parameter is set to the absolute value of the horizontal input.
 		anim.SetFloat("Speed", Mathf.Abs(h));
@@ -157,4 +165,24 @@ public class PlayerControl : MonoBehaviour
 			// Otherwise return this index.
 			return i;
 	}
+
+    public void LeftButtonDown()
+    {
+        touchAxisHorizontal = -1;
+    }
+
+    public void LeftButtonUp()
+    {
+        touchAxisHorizontal = null;
+    }
+
+    public void RightButtonDown()
+    {
+        touchAxisHorizontal = 1;
+    }
+
+    public void RightButtonUp()
+    {
+        touchAxisHorizontal = null;
+    }
 }
