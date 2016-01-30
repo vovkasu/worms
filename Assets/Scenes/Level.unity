@@ -3040,11 +3040,11 @@ MonoBehaviour:
   - Id: 0
     AlphaMask: {fileID: 2800000, guid: 551e0f49bd09c4f489dff3636e8b1105, type: 3}
     ColliderDiameterPixels: 50
-    ShockWaveDiameterPixels: 60
+    ShockWaveDiameterPixels: 100
   - Id: 1
     AlphaMask: {fileID: 2800000, guid: 77c251f882f1622488eac1660ebc21a9, type: 3}
     ColliderDiameterPixels: 80
-    ShockWaveDiameterPixels: 90
+    ShockWaveDiameterPixels: 150
   DestroyColliders: 0
   _pixelPerUnit: 0
 --- !u!4 &2118830766

@@ -59,61 +59,78 @@ namespace Assets.Scripts
         private IEnumerator HoldOnPlayers()
         {
             yield return new WaitForSeconds(1);
-            Team1.Player1.Rigidbody2D.isKinematic = true;
-            Team1.Player2.Rigidbody2D.isKinematic = true;
-            Team2.Player1.Rigidbody2D.isKinematic = true;
-            Team2.Player2.Rigidbody2D.isKinematic = true;
+            HoldOnPlayer(Team1.Player1);
+            HoldOnPlayer(Team1.Player2);
+            HoldOnPlayer(Team2.Player1);
+            HoldOnPlayer(Team2.Player2);
             ActivPlayer.Rigidbody2D.isKinematic = false;
+            ActivPlayer.Arrow.gameObject.SetActive(true);
+        }
+
+        private void HoldOnPlayer(PlayerControl player)
+        {
+            player.Rigidbody2D.isKinematic = true;
+            player.Arrow.gameObject.SetActive(false);
         }
 
 
         public void LeftButtonDown()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.LeftButtonDown();
         }
 
         public void LeftButtonUp()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.LeftButtonUp();
         }
 
         public void RightButtonDown()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.RightButtonDown();
         }
 
         public void RightButtonUp()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.RightButtonUp();
         }
 
         public void Jump()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Jump();
         }
 
         public void UpButtonDown()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Gun.StartUpGun();
         }
 
         public void UpButtonUp()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Gun.StopUpGun();
         }
 
         public void DownButtonDown()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Gun.StartDownGun();
         }
 
         public void DownButtonUp()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Gun.StopDownGun();
         }
 
         public void Fire()
         {
+            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Gun.Fire();
         }
     }

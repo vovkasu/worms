@@ -20,6 +20,7 @@ public class PlayerControl : MonoBehaviour
     public SpriteRenderer Body;
     public Gun Gun;
     public Rigidbody2D Rigidbody2D;
+    public SpriteRenderer Arrow;
 
     private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
