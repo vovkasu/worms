@@ -627,7 +627,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1001 &774434000
 Prefab:
   m_ObjectHideFlags: 0
@@ -1027,7 +1027,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
 --- !u!82 &983741514
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1556,7 +1556,7 @@ RectTransform:
   - {fileID: 914684963}
   - {fileID: 1200215479}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2089,7 +2089,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!1001 &1744304060
 Prefab:
   m_ObjectHideFlags: 0
@@ -2267,7 +2267,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
 --- !u!1 &1784337003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2297,7 @@ Transform:
   - {fileID: 1035144488}
   - {fileID: 1556087194}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1001 &1830797955
 Prefab:
   m_ObjectHideFlags: 0
@@ -2617,7 +2617,7 @@ Transform:
   - {fileID: 604767756}
   - {fileID: 881603615}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1001 &2092197902
 Prefab:
   m_ObjectHideFlags: 0
@@ -2676,6 +2676,60 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 708042f972a104a1793983dbefca755f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &2103791440
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -11.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_Name
+      value: hero (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400016, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2118830764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2712,7 +2766,7 @@ MonoBehaviour:
   - Id: 1
     AlphaMask: {fileID: 2800000, guid: 77c251f882f1622488eac1660ebc21a9, type: 3}
     ColliderDiameterPixels: 80
-    ShockWaveDiameterPixels: 100
+    ShockWaveDiameterPixels: 90
   DestroyColliders: 0
   _pixelPerUnit: 0
 --- !u!4 &2118830766
@@ -2726,7 +2780,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
 --- !u!50 &2118830767
 Rigidbody2D:
   serializedVersion: 2

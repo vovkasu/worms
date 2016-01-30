@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -38,14 +39,23 @@ namespace Assets.Scripts
             }
         }
 
-        public void AddBoom(Vector3 mouseWordPosition, int boomId)
+        public void AddBoom(Vector3 boomPosition, int boomId)
         {
             var boomTemplate = BoomTemplates[boomId];
             var circleCollider2D = gameObject.AddComponent<CircleCollider2D>();
-            circleCollider2D.offset = mouseWordPosition;
+            circleCollider2D.offset = boomPosition;
             circleCollider2D.radius = boomTemplate.ColliderDiameterPixels*0.5f/_pixelPerUnit;
             circleCollider2D.isTrigger = true;
             _collidersIdMap.Add(circleCollider2D, boomId);
+
+            var findObjectsOfType = FindObjectsOfType<PlayerHealth>();
+            var playerHealths = findObjectsOfType.Where(p => (p.transform.position - boomPosition).sqrMagnitude < boomTemplate.ShockWaveDiameterPixels/_pixelPerUnit);
+            foreach (var playerHealth in playerHealths)
+            {
+                var damage = (-(playerHealth.transform.position - boomPosition).sqrMagnitude +
+                              boomTemplate.ShockWaveDiameterPixels / _pixelPerUnit) *10f;// TODO add damage for boomTemplate
+                playerHealth.AddDamage(boomPosition, damage);
+            }
             Debug.Log("Added collider");
         }
 

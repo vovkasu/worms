@@ -51,7 +51,7 @@ public class Rocket : MonoBehaviour
 //		}
 //		// Otherwise if the player manages to shoot himself...
 //		else 
-        if (col.tag =="ground")
+        if (col.tag =="ground" || col.tag == "Player")
         {
             BoomManager.Instance.AddBoom(transform.position, 1);
             OnExplode();
