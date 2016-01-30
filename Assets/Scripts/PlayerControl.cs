@@ -17,9 +17,11 @@ public class PlayerControl : MonoBehaviour
     public AudioClip[] taunts;				// Array of clips for when the player taunts.
 	public float tauntProbability = 50f;	// Chance of a taunt happening.
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
+    public SpriteRenderer Body;
+    public Gun Gun;
+    public Rigidbody2D Rigidbody2D;
 
-
-	private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
+    private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
@@ -31,6 +33,7 @@ public class PlayerControl : MonoBehaviour
 		// Setting up references.
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
+        Rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 
 

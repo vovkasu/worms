@@ -8,27 +8,28 @@ public class PlayerHealth : MonoBehaviour
 	public AudioClip[] ouchClips;				// Array of clips to play when the player is damaged.
 	public float hurtForce = 10f;				// The force with which the player is pushed when hurt.
 
-	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
+// TODO	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private float lastHitTime;					// The time at which the player was last hit.
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
 	private PlayerControl playerControl;		// Reference to the PlayerControl script.
 	private Animator anim;						// Reference to the Animator on the player
+    public SpriteRenderer HealthBar;
 
 
-	void Awake ()
+    void Awake ()
 	{
 		// Setting up references.
 		playerControl = GetComponent<PlayerControl>();
-		healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
 		anim = GetComponent<Animator>();
 
 		// Getting the intial scale of the healthbar (whilst the player has full health).
-		healthScale = healthBar.transform.localScale;
+		healthScale = HealthBar.transform.localScale;
 	}
 
 
     public void AddDamage(Vector3 boomPosition, float damageAmount)
     {
+        playerControl.Rigidbody2D.isKinematic = false;
         // ... and if the time exceeds the time of the last hit plus the time between hits...
         if (Time.time > lastHitTime + repeatDamagePeriod)
         {
@@ -96,9 +97,9 @@ public class PlayerHealth : MonoBehaviour
 	public void UpdateHealthBar ()
 	{
 		// Set the health bar's colour to proportion of the way between green and red based on the player's health.
-		healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
+		HealthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
 
 		// Set the scale of the health bar to be proportional to the player's health.
-		healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1, 1);
+		HealthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1, 1);
 	}
 }
