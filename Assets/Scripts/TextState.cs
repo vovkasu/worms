@@ -3,18 +3,18 @@
 public class TextState : MonoBehaviour
 {
     public TextStateShadow TextStateShadow;
-    private GUIText _textView;
+    public GUIText TextView;
 
 
     void Awake ()
 	{
-	    _textView = GetComponent<GUIText>();
+	    TextView = GetComponent<GUIText>();
 	}
 
 
     public void SetText(string text)
     {
-        _textView.text = text;
+        TextView.text = text;
         TextStateShadow.SetText(text);
     }
 

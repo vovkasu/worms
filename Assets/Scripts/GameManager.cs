@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts
 {
@@ -14,6 +17,10 @@ namespace Assets.Scripts
         public TextState TextState;
         public PlayerControl PlayerControlPrefab;
         public List<Transform> SpawnPoints = new List<Transform>();
+        private bool _isFiredThisTurn;
+        private Coroutine _timerCoroutine;
+        private int _timer;
+        private int _endTimer;
 
         public void Awake()
         {
@@ -52,8 +59,20 @@ namespace Assets.Scripts
                 ActivTeam = ActivTeam == Team1 ? Team2 : Team1;
             }
 
+            if (ActivPlayer != null)
+            {
+                ActivPlayer.PlayerHealth.OnDie -= OnActivPlayerDie;
+            }
             ActivPlayer = ActivTeam.GetActivPlayer();
+            ActivPlayer.PlayerHealth.OnDie += OnActivPlayerDie;
             StartCoroutine(HoldOnPlayers());
+        }
+
+        private void OnActivPlayerDie(object sender, EventArgs e)
+        {
+            Debug.Log("OnActivPlayerDie");
+            StopCoroutine(_timerCoroutine);
+            EndTurne();
         }
 
         private IEnumerator HoldOnPlayers()
@@ -65,14 +84,53 @@ namespace Assets.Scripts
             HoldOnPlayer(Team2.Player2);
             ActivPlayer.Rigidbody2D.isKinematic = false;
             ActivPlayer.Arrow.gameObject.SetActive(true);
+            _isFiredThisTurn = false;
+
+            StartTimer();
         }
 
         private void HoldOnPlayer(PlayerControl player)
         {
+            if(player==null) return;
             player.Rigidbody2D.isKinematic = true;
             player.Arrow.gameObject.SetActive(false);
         }
 
+        private void StartTimer()
+        {
+            TextState.TextView.color = ActivTeam.Color;
+            _timerCoroutine = StartCoroutine(UpdateTimer(60));
+        }
+
+        private void StartFinalTimer()
+        {
+            _timerCoroutine = StartCoroutine(UpdateTimer(2));
+        }
+
+        private IEnumerator UpdateTimer(int time)
+        {
+            var timer = time;
+            if (_timerCoroutine != null)
+            {
+                StopCoroutine(_timerCoroutine);
+            }
+
+            do
+            {
+                TextState.SetText(timer.ToString());
+                yield return new WaitForSeconds(1);
+                timer--;
+            } while (timer >= 0);
+
+            EndTurne();
+        }
+
+        private void EndTurne()
+        {
+            Debug.Log("EndTurne#########");
+            ActivPlayer.PlayerHealth.OnDie -= OnActivPlayerDie;
+            SetActivPlayer();
+        }
 
         public void LeftButtonDown()
         {
@@ -130,8 +188,11 @@ namespace Assets.Scripts
 
         public void Fire()
         {
+            if(_isFiredThisTurn) return;
             ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Gun.Fire();
+            StartFinalTimer();
+            _isFiredThisTurn = true;
         }
     }
 

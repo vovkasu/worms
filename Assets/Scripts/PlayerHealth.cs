@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerHealth : MonoBehaviour
 {	
@@ -8,12 +9,12 @@ public class PlayerHealth : MonoBehaviour
 	public AudioClip[] ouchClips;				// Array of clips to play when the player is damaged.
 	public float hurtForce = 10f;				// The force with which the player is pushed when hurt.
 
-// TODO	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private float lastHitTime;					// The time at which the player was last hit.
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
 	private PlayerControl playerControl;		// Reference to the PlayerControl script.
 	private Animator anim;						// Reference to the Animator on the player
     public SpriteRenderer HealthBar;
+    public event EventHandler OnDie;
 
 
     void Awake ()
@@ -65,13 +66,25 @@ public class PlayerHealth : MonoBehaviour
 
                 // ... Trigger the 'Die' animation state
                 anim.SetTrigger("Die");
+
+                Die();
             }
         }
 
     }
 
+    public void Die()
+    {
+        Debug.Log("Die!!!");
+        if (OnDie != null)
+        {
+            Debug.Log("Die222222");
+            OnDie(this, null);
+        }
+    }
 
-	void TakeDamage (Vector3 boomPosition, float damageAmount)
+
+    void TakeDamage (Vector3 boomPosition, float damageAmount)
 	{
 		// Make sure the player can't jump.
 		playerControl.jump = false;

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class PlayerControl : MonoBehaviour
 	private Animator anim;					// Reference to the player's animator component.
     private bool _flipBackJump=false;
     private float? touchAxisHorizontal;
+    public PlayerHealth PlayerHealth;
 
     void Awake()
 	{

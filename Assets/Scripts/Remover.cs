@@ -15,6 +15,7 @@ public class Remover : MonoBehaviour
 		if(col.gameObject.tag == "Player")
 		{
 		    var playerControl = col.gameObject.GetComponent<PlayerHealth>();
+            playerControl.Die();
 
             // .. stop the Health Bar following the player
             if (playerControl.HealthBar.gameObject.activeSelf)
