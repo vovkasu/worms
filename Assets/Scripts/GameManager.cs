@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace Assets.Scripts
@@ -193,44 +192,6 @@ namespace Assets.Scripts
             ActivPlayer.Gun.Fire();
             StartFinalTimer();
             _isFiredThisTurn = true;
-        }
-    }
-
-
-    public class TeamPlayers
-    {
-        public PlayerControl Player1;
-        public PlayerControl Player2;
-        public Color Color;
-        private bool _isFirstPlayerActiv;
-
-        public void Init(GameObject root, PlayerControl controlPrefab, Transform spawnPosition1, Transform spawnPosition2)
-        {
-            if (Player1 != null)
-            {
-                Object.Destroy(Player1);
-            }
-
-            Player1 = Object.Instantiate(controlPrefab);
-            Player1.transform.position = spawnPosition1.position;
-            Player1.transform.parent = root.transform;
-            Player1.Body.color = Color;
-
-            if (Player2 != null)
-            {
-                Object.Destroy(Player2);
-            }
-
-            Player2 = Object.Instantiate(controlPrefab);
-            Player2.transform.position = spawnPosition2.position;
-            Player2.transform.parent = root.transform;
-            Player2.Body.color = Color;
-        }
-
-        public PlayerControl GetActivPlayer()
-        {
-            _isFirstPlayerActiv = !_isFirstPlayerActiv;
-            return _isFirstPlayerActiv ? Player1 : Player2;
         }
     }
 }
