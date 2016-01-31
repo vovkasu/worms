@@ -707,6 +707,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c2b07d8b3d3c1428527fe1a5d41859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Team1:
+    Player1: {fileID: 0}
+    Player2: {fileID: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  Team2:
+    Player1: {fileID: 0}
+    Player2: {fileID: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
+  ActivTeam:
+    Player1: {fileID: 0}
+    Player2: {fileID: 0}
+    Color: {r: 0, g: 0, b: 0, a: 0}
   ActivPlayer: {fileID: 0}
   TextState: {fileID: 335855069}
   PlayerControlPrefab: {fileID: 11400002, guid: 6aa187bc6339843479c03fdfd71404a3,
@@ -2989,22 +3001,6 @@ Prefab:
     - target: {fileID: 100030, guid: 708042f972a104a1793983dbefca755f, type: 2}
       propertyPath: m_Name
       value: foregrounds
-      objectReference: {fileID: 0}
-    - target: {fileID: 400024, guid: 708042f972a104a1793983dbefca755f, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400024, guid: 708042f972a104a1793983dbefca755f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 29.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 400024, guid: 708042f972a104a1793983dbefca755f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 100030, guid: 708042f972a104a1793983dbefca755f, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 708042f972a104a1793983dbefca755f, type: 2}
