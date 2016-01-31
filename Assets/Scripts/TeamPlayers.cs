@@ -11,8 +11,10 @@ namespace Assets.Scripts
         public PlayerControl Player1;
         public PlayerControl Player2;
         public Color Color;
+        public event EventHandler OnLoseGame;
         private int _turnCount;
         private List<PlayerControl> _activPlayers = new List<PlayerControl>();
+        public string Name { get; set; }
 
         public void Init(GameObject root, PlayerControl controlPrefab, Transform spawnPosition1, Transform spawnPosition2)
         {
@@ -25,7 +27,14 @@ namespace Assets.Scripts
             Player1.transform.position = spawnPosition1.position;
             Player1.transform.parent = root.transform;
             Player1.Body.color = Color;
-            Player1.PlayerHealth.OnDie += (sender, args) => { _activPlayers.Remove(Player1); };
+            Player1.PlayerHealth.OnDie += (sender, args) =>
+            {
+                _activPlayers.Remove(Player1);
+                if (OnLoseGame != null)
+                {
+                    OnLoseGame(this, null);
+                }
+            };
 
             if (Player2 != null)
             {

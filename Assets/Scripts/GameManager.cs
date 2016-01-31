@@ -20,10 +20,29 @@ namespace Assets.Scripts
         private Coroutine _timerCoroutine;
         private int _timer;
         private int _endTimer;
+        private bool _isGameOver;
 
         public void Awake()
         {
             InitGame();
+            Team1.OnLoseGame += (sender, args) => OnGameOver(Team2);
+            Team2.OnLoseGame += (sender, args) => OnGameOver(Team1);
+            _isGameOver = false;
+        }
+
+        private void OnGameOver(TeamPlayers winner)
+        {
+            _isGameOver = true;
+            StopCoroutine(_timerCoroutine);
+            TextState.SetText("Winner:"+winner.Name);
+            TextState.TextView.color = winner.Color;
+            StartCoroutine(RestartGame());
+        }
+
+        private IEnumerator RestartGame()
+        {
+            yield return new WaitForSeconds(2);
+            Application.LoadLevel(Application.loadedLevel);
         }
 
         private void InitGame()
@@ -39,7 +58,10 @@ namespace Assets.Scripts
             }
 
             Team1.Color = Color.green;
+            Team1.Name = "Green";
+
             Team2.Color = Color.red;
+            Team2.Name = "Red";
 
             Team1.Init(gameObject, PlayerControlPrefab, targetSpawnPositions[0], targetSpawnPositions[1]);
             Team2.Init(gameObject, PlayerControlPrefab, targetSpawnPositions[2], targetSpawnPositions[3]);
@@ -49,6 +71,9 @@ namespace Assets.Scripts
 
         private void SetActivPlayer()
         {
+            if(_isGameOver)return;
+
+
             if (ActivTeam == null)
             {
                 ActivTeam = Team1;
@@ -139,7 +164,6 @@ namespace Assets.Scripts
 
         public void LeftButtonUp()
         {
-            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.LeftButtonUp();
         }
 
@@ -151,7 +175,6 @@ namespace Assets.Scripts
 
         public void RightButtonUp()
         {
-            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.RightButtonUp();
         }
 
@@ -169,7 +192,6 @@ namespace Assets.Scripts
 
         public void UpButtonUp()
         {
-            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Gun.StopUpGun();
         }
 
@@ -181,7 +203,6 @@ namespace Assets.Scripts
 
         public void DownButtonUp()
         {
-            ActivPlayer.Arrow.gameObject.SetActive(false);
             ActivPlayer.Gun.StopDownGun();
         }
 
